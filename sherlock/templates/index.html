@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+</head>
+<body>
+    <h1>Sherlock sample application</h1>
+
+    <textarea id = "textToAnalyze" name="text" rows = "3"cols = "80"></textarea></br>
+    <button onclick="processText()">Click Me!</button>
+
+    <h2> Result </h2>
+
+    <script>
+        function processText() {
+            fetch('analyze_text', 
+            {
+                method: 'post',
+                body: document.getElementById("textToAnalyze").value
+            })
+            .then(response => response.json())
+            .then(jsonData => {
+                let result = document.createElement("div");
+                result.innerHTML = JSON.stringify(jsonData);
+                document.body.appendChild(result);
+            })
+            .catch(error => {
+                console.log(response.status);
+            });
+        }
+    </script>
+</body>
+</html>
