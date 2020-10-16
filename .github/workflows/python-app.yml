@@ -23,3 +23,5 @@ jobs:
       run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with unittest
       run: python3 -m unittest discover
+      env:
+        TEXTRAZOR_API_KEY: ${{ secrets.TEXTRAZOR_API_KEY }}
