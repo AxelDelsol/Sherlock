@@ -33,7 +33,9 @@
                 document.body.appendChild(result);
             })
             .catch(error => {
-                console.log(response.status);
+                let result = document.createElement("div");
+                result.innerHTML = error.message;
+                document.body.appendChild(result);
             });
         }
     </script>
