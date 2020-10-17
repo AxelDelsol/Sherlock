@@ -4,6 +4,7 @@ from flask import request
 from flask import Response
 from flask import jsonify
 from sherlock.analyzer import get_people_from_text, AnalysisException
+from sherlock.person import Person, get_information_from
 
 
 @app.route('/')
@@ -15,11 +16,11 @@ def index():
 def analyze_text():
     try:
         people = get_people_from_text(request.get_data(as_text=True))
-        # people_info = get_information_from(people)
+        people_info = get_information_from(people)
         # people_link = get_link_information_from(people)
         # return jsonify(info=people_info, link=people_link);
         return jsonify(
-            data = people
+            people = [p.toDict() for p in people_info]
             )
     except AnalysisException as ex:
         return jsonify(

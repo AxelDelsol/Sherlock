@@ -18,6 +18,7 @@
     <button onclick="processText()">Click Me!</button>
 
     <h2> Result </h2>
+    <pre id="result"></pre>
 
     <script>
         function processText() {
@@ -28,14 +29,11 @@
             })
             .then(response => response.json())
             .then(jsonData => {
-                let result = document.createElement("div");
-                result.innerHTML = JSON.stringify(jsonData);
-                document.body.appendChild(result);
+                result.innerHTML = JSON.stringify(jsonData, null, 2);
             })
             .catch(error => {
                 let result = document.createElement("div");
                 result.innerHTML = error.message;
-                document.body.appendChild(result);
             });
         }
     </script>
