@@ -5,6 +5,7 @@ from flask import Response
 from flask import jsonify
 from sherlock.analyzer import get_people_from_text, AnalysisException
 from sherlock.person import Person, get_information_from
+from sherlock.common_fact import CommonFact, find_common_facts_from
 
 
 @app.route('/')
@@ -15,18 +16,24 @@ def index():
 @app.route('/analyze_text', methods = ['POST'])
 def analyze_text():
     try:
-        people = get_people_from_text(request.get_data(as_text=True))
-        people_info = get_information_from(people)
-        # people_link = get_link_information_from(people)
-        # return jsonify(info=people_info, link=people_link);
-        return jsonify(
-            people = [p.toDict() for p in people_info]
-            )
+        return process_request(request)
     except AnalysisException as ex:
-        return jsonify(
+        return process_error(ex)
+    
+    
+def process_request(request):
+    people = get_people_from_text(request.get_data(as_text=True))
+    people_info = get_information_from(people)
+    people_facts = find_common_facts_from(people_info)
+    return jsonify(
+        people = [p.toDict() for p in people_info],
+        facts =  [f.toDict() for f in people_facts]
+        )
+
+def process_error(ex):
+    return jsonify(
             message = ex.message, 
             status = ex.status, 
             mimetype='application/json'
-        )
-    
-    
+            )
+   
