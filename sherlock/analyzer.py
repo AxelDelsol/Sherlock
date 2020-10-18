@@ -3,6 +3,7 @@ import re
 import os
 
 # This function analyses the text and output a list of wikidata IDs
+# If TextRazor fails, an AnalysisException is raised.
 def get_people_from_text(text):
     textrazor.api_key = os.environ['TEXTRAZOR_API_KEY']
     client = create_client()
@@ -22,6 +23,8 @@ def create_client():
     return client
 
 
+# Abstraction over textrazor.TextRazorAnalysisException.
+# It allows the routes.py to not depend on the implementation details (ie TextRazor library).
 class AnalysisException(Exception):
     def __init__(self, message):
         self.message = message
