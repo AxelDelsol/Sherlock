@@ -1,8 +1,5 @@
 from sherlock import app
-from flask import render_template
-from flask import request
-from flask import Response
-from flask import jsonify
+from flask import render_template, request, Response, jsonify
 from sherlock.analyzer import get_people_from_text, AnalysisException
 from sherlock.person import Person, get_information_from
 from sherlock.common_fact import CommonFact, find_common_facts_from
