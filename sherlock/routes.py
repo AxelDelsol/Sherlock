@@ -26,8 +26,8 @@ def process_request(request):
     people_info = get_information_from(people)
     people_facts = find_common_facts_from(people_info)
     return jsonify(
-        people = [p.toDict() for p in people_info],
-        facts =  [f.toDict() for f in people_facts]
+        people = [p.to_dict() for p in people_info],
+        facts =  [f.to_dict() for f in people_facts]
         )
 
 def process_error(ex):

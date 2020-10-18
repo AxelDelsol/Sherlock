@@ -14,7 +14,7 @@ class Person:
         self.is_alive = None
         
 
-    def toDict(self):
+    def to_dict(self):
         return self.__dict__
 
 

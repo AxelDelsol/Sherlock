@@ -9,7 +9,7 @@ class CommonFact:
         self.attribute = attribute
         self.values = values
 
-    def toDict(self):
+    def to_dict(self):
         return self.__dict__
 
 
@@ -23,8 +23,8 @@ def find_common_facts_from(people):
 
 def cross_information_between(person1, person2):
     facts = []
-    person1_dict = person1.toDict()
-    person2_dict = person2.toDict()
+    person1_dict = person1.to_dict()
+    person2_dict = person2.to_dict()
 
     for (key1,value1) in person1_dict.items():
         if key1 in person2_dict:
