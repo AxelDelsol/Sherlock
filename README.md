@@ -3,6 +3,11 @@
 # Sherlock
 Small API to analyse text and retrieve people's information.
 
+## Requirements
+
+* Python 3.6
+* (Optional) Docker
+
 ## How to use on UNIX/MAC
 
 1. Clone this repo : `git clone https://github.com/AxelDelsol/Sherlock.git`
