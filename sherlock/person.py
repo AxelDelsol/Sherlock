@@ -2,6 +2,8 @@ import json
 import sys
 from SPARQLWrapper import SPARQLWrapper, JSON
 
+# Data class to store information about a person.
+# Use function create_person_from instead of the constructor to create a Person.
 class Person:
     def __init__(self, wikidata_id):
         self.wikidata_id = wikidata_id
@@ -13,12 +15,13 @@ class Person:
         self.birthdate = ""
         self.is_alive = None
         
-
-    def toDict(self):
+    # Dictionary representation of a Person (can be used to convert into JSON string)
+    def to_dict(self):
         return self.__dict__
 
 
-# Returns None if the creation failed
+# Creates a person from his wikidata_id.
+# If something wrong happens (wrong wikidata_id for example), None is returned
 def create_person_from(wikidata_id):
     person = Person(wikidata_id)
     endpoint_url = "https://query.wikidata.org/sparql"

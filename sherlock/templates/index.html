@@ -8,7 +8,8 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
-    <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </head>
 <body>
@@ -17,25 +18,11 @@
     <textarea id = "textToAnalyze" name="text" rows = "3"cols = "80"></textarea></br>
     <button onclick="processText()">Click Me!</button>
 
-    <h2> Result </h2>
-    <pre id="result"></pre>
-
-    <script>
-        function processText() {
-            fetch('analyze_text', 
-            {
-                method: 'post',
-                body: document.getElementById("textToAnalyze").value
-            })
-            .then(response => response.json())
-            .then(jsonData => {
-                result.innerHTML = JSON.stringify(jsonData, null, 2);
-            })
-            .catch(error => {
-                let result = document.createElement("div");
-                result.innerHTML = error.message;
-            });
-        }
-    </script>
+    <h2>Result</h2>
+    <div id="error_message"></div>
+    <h3>People</h3>
+    <div id="result_people"></div>
+    <h3>Facts</h3>
+    <div id="result_fact"></div>
 </body>
 </html>
