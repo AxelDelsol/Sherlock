@@ -43,9 +43,12 @@ def process_request(request):
         )
 
 def process_error(ex):
-    return jsonify(
+    print("Error " + str(ex.status))
+    response = jsonify(
             message = ex.message, 
             status = ex.status, 
             mimetype='application/json'
-            )
+    )
+    response.status_code = ex.status
+    return response
    
