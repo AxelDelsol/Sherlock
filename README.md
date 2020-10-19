@@ -32,6 +32,6 @@ Small API to analyse text and retrieve people's information.
 
 1. Clone this repo : `git clone https://github.com/AxelDelsol/Sherlock.git`
 2. Move inside the repo : `cd Sherlock`
-3. `docker build --build-arg TextRazorKey="your_key" -t sherlock-demo .
+3. `docker build --build-arg TextRazorKey="your_key" -t sherlock-demo .`
 4. `docker run -p 5000:5000 sherlock-demo`
 5. Visit http://localhost:5000/ and have fun !
